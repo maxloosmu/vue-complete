@@ -18,6 +18,8 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
+      <p>{{ seconds }} seconds have elapsed since this page is refreshed.</p>
+      <p v-for="(fruit, i) in fruits" v-show="seconds%3 == i">{{ i }} {{ fruit }}</p>
       <button v-on:click="add(10)">Add 10</button>
       <button v-on:click="reduce(5)">Subtract 5</button>
       <p>Result: {{ counter }}</p>
