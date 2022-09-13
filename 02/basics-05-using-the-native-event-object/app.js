@@ -2,12 +2,26 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 0,
-      name: ''
+      name: '',
+      confirmedName: '',
+      buttonText: 'Test Me'
     };
   },
   methods: {
-    setName(event, lastName) {
-      this.name = event.target.value + ' ' + lastName;
+    resetButtonValue() {
+      this.buttonText = 'Test Me';
+    },
+    setButtonText(event) {
+      this.buttonText = event.target.value;
+    },
+    confirmInput() {
+      this.confirmedName = this.name;
+    },
+    submitForm(event) {
+      alert("Submitted!  " + event.target.value);
+    },
+    setName(event, phone) {
+      this.name = event.target.value + ' ' + phone;
     },
     add(num) {
       this.counter = this.counter + num;
@@ -19,6 +33,7 @@ const app = Vue.createApp({
   },
   beforeMount(){
     this.name = 'Max Loo';
+    this.confirmedName = 'Max Loo';
   }
 });
 
