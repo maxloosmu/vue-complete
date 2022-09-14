@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <section id="assignment">
+      <p>1) Output your name</p>
+      <h2>YOUR NAME: {{ myname }}</h2>
+      <p>2) Output your age</p>
+      <p>YOUR AGE: {{ myage }} years old</p>
+      <p>3) Output your age + 5</p>
+      <p>YOUR AGE in 5 years: {{ myageplus5 }} years old</p>
+      <p>4) Output a random number (0 to 1)</p>
+      <p>Favorite Number: RANDOM NUMBER BETWEEN 0 AND 1 = {{ randomnum }}</p>
+      <div>
+        <p>5) Display some image you found via Google</p>
+        <img src="https://www.planetware.com/wpimages/2020/03/singapore-in-pictures-beautiful-places-to-photograph-marina-bay-sands.jpg" alt="Marina Bay Sands" width="730" height="487">
+        <p>5) Display some image you found via Google using v-bind</p>
+        <img :src="sporepic">
+      </div>
+      <p>6) Prepopulate the input field with your name via the "value" attribute</p>
+      <input type="text" :value="myname" v-model="myname"/>
+    </section>
+  </body>
+</html>
