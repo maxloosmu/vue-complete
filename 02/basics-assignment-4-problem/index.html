@@ -31,7 +31,8 @@
 
       <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
       <input type="text" v-model="bgcolour"/>
-      <p :style="{ backgroundColor: bgcolour }">Style me inline!</p>
+      <p :style="{ backgroundColor: bgcolour, display: inlinehide }">Style me inline!</p>
+      <p :class="flexibleBGcolour">Flexible BG Colour not possible with Class because backgroundColor is NOT a Class</p>
     </section>
   </body>
 </html>

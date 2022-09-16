@@ -8,6 +8,13 @@ const app = Vue.createApp({
     };
   },
   computed: {
+    inlinehide() {
+      return (this.showhide ? 'block' : 'none');
+      // else return 'none';
+    },
+    flexibleBGcolour() {
+      return 'blue';
+    },
     selectCSS() {
       // if (this.cssclass == 'user1') 
       return { 
