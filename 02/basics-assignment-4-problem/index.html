@@ -17,6 +17,26 @@
       <h1>Vue Styling</h1>
     </header>
     <section id="assignment">
+      <div>Selected: {{ cssclass }}</div>
+      <select v-model="cssclass">
+        <option v-for="option in cssclasses" :value="option">
+          {{ option }}
+        </option>
+      </select>
+      <br><br>
+      <div>Selected: {{ cssclass }}</div>
+      <select v-model="cssclass">
+        <option disabled value="">Please select one</option>
+        <option>user1</option>
+        <option>user2</option>
+      </select>
+      <br><br>
+      <div>Picked: {{ cssclass }}</div>
+      <input type="radio" id="one" value="user1" v-model="cssclass" />
+      <label for="one">user1</label>
+      <input type="radio" id="two" value="user2" v-model="cssclass" />
+      <label for="two">user2</label>
+      <br><br>
       <!-- 1) Fetch the user input and use it as a CSS class -->
       <!-- The entered class should be added to the below paragraph -->
       <input type="text" v-model="cssclass"/>

@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       cssclass: '',
-      cssclasses: ['blue', 'red', 'green'],
+      cssclasses: ['user1', 'user2'],
       bgcolour: '',
       showhide: true,
     };
