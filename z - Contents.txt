@@ -1,0 +1,12 @@
+Chapter 1 : Getting Started
+Chapter 2 : Basics and Core Concepts – Document Object Model (DOM) Interaction with Vue
+Chapter 3 : Rendering Conditional Content and Lists
+Chapter 4 : Course Project: The Monster Slayer Game
+Chapter 5 : Vue: Behind the Scenes
+Chapter 6 : Introducing Components
+Chapter 7 : Moving to a Better Development Setup and Workflow with the Vue CLI
+Chapter 8 : Component Communication
+Chapter 9 : Diving Deeper into Components
+Chapter 10 : Course Project: The Learning Resources App
+
+
