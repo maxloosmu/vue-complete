@@ -1,0 +1,220 @@
+<template>
+  <div id="app">
+    <table border="1" style="border-collapse: collapse">
+      <tbody>
+      <template v-for="(school, currentSchool) in data">
+        <template v-for="(schoolClass, currentClass) in school.classes">
+          <tr v-for="(student, currentStudent) in schoolClass.students">
+            <td v-if="currentStudent+currentClass == 0" :rowspan="rowspanSchool[school.school_name]">
+              {{school.school_name}}
+            </td>
+            <td v-if="currentStudent == 0" :rowspan="rowspanClass[schoolClass.class_name]">{{schoolClass.class_name}}</td>
+            <td>{{student.student_name}}</td>
+          </tr>
+        </template>
+      </template>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'app',
+    computed: {
+      rowspanSchool() {
+        let schoolSpans = {};
+        for (let school in this.data) {
+          let total = 0;
+          for (let schoolClass in this.data[school].classes) {
+            for (let student in this.data[school].classes[schoolClass].students) {
+              total++;
+            }
+          }
+          schoolSpans[this.data[school].school_name] = total;
+        }
+        return schoolSpans
+      },
+      rowspanClass() {
+        let classSpans = {};
+        for (let school in this.data) {
+          for (let schoolClass in this.data[school].classes) {
+            let total = 0;
+            for (let student in this.data[school].classes[schoolClass].students) {
+              total++;
+            }
+            classSpans[this.data[school].classes[schoolClass].class_name] = total;
+          }
+        }
+        return classSpans
+      }
+    },
+    data() {
+      return {
+        data: arrayData
+      }
+    }
+}
+</script>
+
+
+var Main = {
+  data() {
+    return {
+      dataTable: [
+        {
+          date: "11.26",
+          category: "fruit",
+          name: "apple",
+          price: 2,
+          count: 10,
+          subtotal: 1
+        },
+        {
+          date: "11.26",
+          category: "fruit",
+          name: "apple",
+          price: 3,
+          count: 20,
+          subtotal: 1
+        },
+        {
+          date: "11.26",
+          category: "meat",
+          name: "pork",
+          price: 4,
+          count: 10,
+          subtotal: 1
+        },
+        {
+          date: "11.26",
+          category: "meat",
+          name: "beef",
+          price: 5,
+          count: 10,
+          subtotal: 1
+        },
+        {
+          date: "11.26",
+          category: "car",
+          name: "motorcycle",
+          price: 3,
+          count: 20,
+          subtotal: 1
+        },
+        {
+          date: "11.27",
+          category: "car",
+          name: "motorcycle",
+          price: 3,
+          count: 20,
+          subtotal: 1
+        },
+        {
+          date: "11.27",
+          category: "car",
+          name: "motorcycle",
+          price: 3,
+          count: 20,
+          subtotal: 1
+        }
+      ]
+    };
+  },
+  created() {
+    this.onMergeLines();
+  },
+  methods: {
+    // Processing data calculation
+    onMergeLines() {
+      const propertys = ["date", "category", "name"];
+      const dataTable = this.dataTable;
+      this.dataTable = dataTable.map((item, index) => {
+        preRow = this.dataTable[index - 1] || {};
+        item.subtotal = item.count * item.price || 0;
+        item = diffProperty(item, index, 0);
+        return item;
+      });
+
+      function diffProperty(current, index, keyIndex) {
+        const key = propertys[keyIndex],
+          preRow = dataTable[index - 1] || {};
+        if (current[key] === preRow[key]) {
+          if (keyIndex < propertys.length) {
+            return diffProperty(current, index, keyIndex + 1);
+          } else {
+            current.subtotal2 = preRow.subtotal2;
+            return current;
+          }
+        } else {
+          let subtotal2 = current.count * current.price || 0;
+          for (let i = index + 1; i < dataTable.length; i++) {
+            const nextRow = dataTable[i];
+            console.log(
+              propertys.filter((prop) => current[prop] === nextRow[prop])
+                ?.length || 0,
+              "c"
+            );
+            if (
+              (propertys.filter((prop) => current[prop] === nextRow[prop])
+                ?.length || 0) === propertys.length
+            ) {
+              subtotal2 += nextRow["count"] * nextRow["price"] || 0;
+            } else {
+              break;
+            }
+          }
+          current.subtotal2 = subtotal2;
+          return current;
+        }
+      }
+    },
+
+    objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+      //The index of the column we want to merge
+      if (![0, 1, 2, 6].includes(columnIndex)) {
+        return {
+          rowspan: 1,
+          colspan: 1
+        };
+      }
+
+      const dataTable = this.dataTable,
+        property = column["property"];
+      const tableLen = dataTable.length;
+      let _row = 1,
+        _col = 1;
+      const preRow = dataTable[rowIndex - 1] || {};
+
+      if (
+        row.date === preRow.date &&
+        (property === "date" || preRow[property] === row[property])
+      ) {
+        _row = 0;
+      } else if (rowIndex + 1 < tableLen) {
+        for (let i = rowIndex + 1; i < tableLen; i++) {
+          const nextRow = dataTable[i];
+          if (
+            nextRow.date === row.date &&
+            (property === "date" ||
+              (nextRow.category === row.category &&
+                row[property] === nextRow[property]))
+          ) {
+            _row++;
+          } else {
+            break;
+          }
+        }
+      }
+
+      return {
+        rowspan: _row,
+        colspan: _col
+      };
+    }
+  }
+};
+var Ctor = Vue.extend(Main);
+new Ctor().$mount("#app");
+
+

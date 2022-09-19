@@ -11,8 +11,11 @@ const app = Vue.createApp({
       return (this.showhide ? 'block' : 'none');
     },
     buttoncaption() {
-      return ((this.showhide && this.tasklist.length > 0) ? 'Hide Tasklist' : 'Show Tasklist');
-    }
+      if (this.tasklist.length == 0) return 'No tasks yet';
+      else if (this.tasklist.length > 0) {
+        return ((this.showhide) ? 'Hide Tasklist' : 'Show Tasklist');
+      }
+    },
   },
   methods: {
     addtask() {
@@ -20,9 +23,14 @@ const app = Vue.createApp({
     },
     removetask(idx) {
       this.tasklist.splice(idx, 1);
+      if (this.tasklist.length == 0) {
+        this.showhide = true;
+      }
     },
     togglevisible() {
-      this.showhide = !this.showhide;
+      if (this.tasklist.length > 0) {
+        this.showhide = !this.showhide;
+      }
     },
   },
 });
