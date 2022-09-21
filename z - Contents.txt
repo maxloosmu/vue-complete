@@ -1,3 +1,7 @@
+npm install -g @vue/cli
+vetur
+
+
 Chapter 1 : Getting Started
 Chapter 2 : Basics and Core Concepts – Document Object Model (DOM) Interaction with Vue
 Chapter 3 : Rendering Conditional Content and Lists
@@ -8,5 +12,34 @@ Chapter 7 : Moving to a Better Development Setup and Workflow with the Vue CLI
 Chapter 8 : Component Communication
 Chapter 9 : Diving Deeper into Components
 Chapter 10 : Course Project: The Learning Resources App
+
+Chapter 11 : Forms
+Chapter 12 : Sending HTTP Requests
+Chapter 13 : Routing: Building “Multi-Page” Single Page Applications
+Chapter 14 : Animations and Transitions
+Chapter 15 : Vuex
+Chapter 16 : Main Project: “Find a Coach” Web App
+Chapter 17 : Vue and Authentication
+Chapter 18 : Optimizing and Deploying Vue Apps
+Chapter 19 : The Composition API – Replacing the Options API
+Chapter 20 : Reusing Functionality: Mixins and Custom Composition Functions
+
+Chapter 21 : Roundup and Next Steps
+Chapter 22 : Vue 2 to Vue 3 Migration
+Chapter 23 : Getting Started [VUE2]
+Chapter 24 : Using Vue.js to Interact with the Document Object Model (DOM) [VUE2]
+Chapter 25 : Using Conditionals and Rendering Lists [VUE2]
+Chapter 26 : First Course Project - The Monster Slayer [VUE2]
+
+
+
+
+
+
+
+
+
+
+
 
 
