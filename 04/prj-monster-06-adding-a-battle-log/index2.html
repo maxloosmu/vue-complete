@@ -46,7 +46,7 @@
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <table>
+        <table ref="logTable">
           <th>ROUND</th><th>WHO</th><th>ACTION</th><th>VALUE</th>
           <tr v-for="(logMessage, i) in logMessages">
             <!-- <td rowspan="2" v-if="currentRound%2 !== 0">{{ printCurrentRound }}</td> -->
@@ -77,16 +77,16 @@
   </body>
 </html>
 <script>
-  let table = document.querySelector('table');
-  let headerCell = null;
+  // let table = document.querySelector('table');
+  // let headerCell = null;
 
-  for (let row of table.rows) {
-    const firstCell = row.cells[0];
-    if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
-      headerCell = firstCell;
-    } else {
-      headerCell.rowSpan++;
-      firstCell.remove();
-    }
-  }
+  // for (let row of table.rows) {
+  //   const firstCell = row.cells[0];
+  //   if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
+  //     headerCell = firstCell;
+  //   } else {
+  //     headerCell.rowSpan++;
+  //     firstCell.remove();
+  //   }
+  // }
 </script>

@@ -1,3 +1,5 @@
+// import { rowspanfirstcell } from './test.js';
+
 function getRandomValue(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -10,7 +12,8 @@ const app = Vue.createApp({
       currentRound: 0,
       listOfRounds: [],
       winner: null,
-      logMessages: []
+      logMessages: [],
+      table: {},
     };
   },
   computed: {
@@ -73,11 +76,13 @@ const app = Vue.createApp({
       this.monsterHealth -= attackValue;
       this.addLogMessage('player', 'attack', attackValue);
       this.attackPlayer();
+      this.fixLogTable();
     },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15);
       this.playerHealth -= attackValue;
       this.addLogMessage('monster', 'attack', attackValue);
+      this.fixLogTable();
     },
     specialAttackMonster() {
       this.currentRound++;
@@ -86,6 +91,7 @@ const app = Vue.createApp({
       this.monsterHealth -= attackValue;
       this.addLogMessage('player', 'attack', attackValue);
       this.attackPlayer();
+      this.fixLogTable();
     },
     healPlayer() {
       this.currentRound++;
@@ -98,6 +104,7 @@ const app = Vue.createApp({
       }
       this.addLogMessage('player', 'heal', healValue);
       this.attackPlayer();
+      this.fixLogTable();
     },
     surrender() {
       this.winner = 'monster';
@@ -108,14 +115,32 @@ const app = Vue.createApp({
         actionType: what,
         actionValue: value
       });
+    },
+    fixLogTable() {
+      // let table = this.$ref.logTable;
+      // console.log(table);
+      // let headerCell = null;
+      // for (let row of table.rows) {
+      //   let firstCell = row.cells[0];
+      //   if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
+      //     headerCell = firstCell;
+      //   } else {
+      //     headerCell.rowSpan++;
+      //     firstCell.remove();
+      //   }
+      // }
     }
   },
   mounted() {
-    let table = document.querySelector('table');
+    this.table = this.$refs.logTable;
+  },
+  updated() {
+    // rowspanfirstcell();
+    table = this.table;
+    console.log(table);
     let headerCell = null;
-
     for (let row of table.rows) {
-      const firstCell = row.cells[0];
+      let firstCell = row.cells[0];
       if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
         headerCell = firstCell;
       } else {
