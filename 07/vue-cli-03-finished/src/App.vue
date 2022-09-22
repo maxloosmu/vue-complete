@@ -17,7 +17,7 @@ export default {
       friends: [
         {
           id: "manuel",
-          name: "Manuel Lorenz",
+          name: "Manuel Lorenzo",
           phone: "0123 45678 90",
           email: "manuel@localhost.com",
         },
