@@ -5,7 +5,7 @@ https://github.com/nathanhleung/install-peerdeps
 https://www.npmjs.com/package/eslint
 https://eslint.org/docs/latest/user-guide/configuring/language-options#specifying-parser-options
 https://github.com/vuejs/vue-cli/issues/2730
-
+https://cli.vuejs.org/guide/deployment.html#previewing-locally
 
 
 
