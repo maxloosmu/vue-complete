@@ -22,7 +22,7 @@ export default {
       detailsAreVisible: false,
       friend: {
         id: "manuel",
-        name: "Manuel Lorenz",
+        name: "Manuel Lorenzoss",
         phone: "0123",
         email: "manuel@localhost.com",
       },
