@@ -1,3 +1,5 @@
+Camel, snake, kebab, pascal case
+
 https://learn.microsoft.com/en-us/windows/dev-environment/javascript/vue-on-wsl
 npm install -g @vue/cli
 vetur
@@ -6,6 +8,7 @@ https://www.npmjs.com/package/eslint
 https://eslint.org/docs/latest/user-guide/configuring/language-options#specifying-parser-options
 https://github.com/vuejs/vue-cli/issues/2730
 https://cli.vuejs.org/guide/deployment.html#previewing-locally
+https://github.com/vuejs/vue-cli/issues/4421
 
 
 
