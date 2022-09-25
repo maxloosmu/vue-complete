@@ -43,13 +43,15 @@ export default {
   },
   data() {
     return {
+      // detailsAreVisible and friendIsFavorite are child local properties.
+      // local property data for each friend recorded separately.
       detailsAreVisible: false,
-      friend: {
-        id: 'manuel',
-        name: 'Manuel Lorenz',
-        phone: '0123 45678 90',
-        email: 'manuel@localhost.com',
-      },
+      // friend: {
+      //   id: 'manuel',
+      //   name: 'Manuel Lorenz',
+      //   phone: '0123 45678 90',
+      //   email: 'manuel@localhost.com',
+      // },
       friendIsFavorite: this.isFavorite,
     };
   },

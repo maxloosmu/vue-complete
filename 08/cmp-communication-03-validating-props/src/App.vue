@@ -4,6 +4,7 @@
       <h1>My Friends</h1>
     </header>
     <ul>
+      <!-- kebab case data here is connected to camel case props data in components. -->
       <friend-contact
         name="Manuel Lorenz"
         phone-number="01234 78992"
@@ -25,16 +26,16 @@ export default {
     return {
       friends: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          // id: "manuel",
+          // name: "Manuel Lorenz",
+          // phone: "0123 45678 90",
+          // email: "manuel@localhost.com",
         },
         {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
+          // id: "julie",
+          // name: "Julie Jones",
+          // phone: "0987 654421 21",
+          // email: "julie@localhost.com",
         },
       ],
     };
