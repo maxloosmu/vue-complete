@@ -29,7 +29,7 @@ export default {
       required: true,
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       required: true
     },
     emailAddress: {

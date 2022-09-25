@@ -4,7 +4,7 @@ package.json
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0"
 
-change:
+add:
 package.json
   "devDependencies": {
     "@babel/eslint-parser": "^7.5.4",
@@ -15,11 +15,17 @@ change:
     parser: '@babel/eslint-parser'
   },
 
-npm i eslint
-npm i
+npm i --package-lock-only --force
+npm audit fix --force
 npm install eslint-plugin-vue -u
 
 
 
 
+
+
+
+No Longer Needed:
+npm i eslint
+npm i
 
