@@ -5,6 +5,8 @@ npm install -g @vue/cli
 vetur
 https://github.com/nathanhleung/install-peerdeps
 https://www.npmjs.com/package/eslint
+https://github.com/creativetimofficial/vuetify-material-dashboard/issues/31
+https://stackoverflow.com/questions/69554485/eslint-error-must-use-import-to-load-es-module
 https://eslint.org/docs/latest/user-guide/configuring/language-options#specifying-parser-options
 https://github.com/vuejs/vue-cli/issues/2730
 https://cli.vuejs.org/guide/deployment.html#previewing-locally

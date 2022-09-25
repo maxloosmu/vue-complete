@@ -4,6 +4,10 @@
     <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
     <ul v-if="detailsAreVisible">
       <li>
+        <strong>Mail Address:</strong>
+        {{ mailAddress }}
+      </li>
+      <li>
         <strong>Phone:</strong>
         {{ phoneNumber }}
       </li>
@@ -19,6 +23,7 @@
 export default {
   props: [
     'name',
+    'mailAddress',
     'phoneNumber',
     'emailAddress'
   ],
@@ -26,10 +31,10 @@ export default {
     return {
       detailsAreVisible: false,
       friend: {
-        id: "manuel",
-        name: "Manuel Lorenz",
-        phone: "0123 45678 90",
-        email: "manuel@localhost.com",
+        // id: "manuel",
+        // name: "Manuel Lorenz",
+        // phone: "0123 45678 90",
+        // email: "manuel@localhost.com",
       },
     };
   },

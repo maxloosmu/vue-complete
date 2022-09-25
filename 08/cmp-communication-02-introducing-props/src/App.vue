@@ -8,11 +8,13 @@
         name="Manuel Lorenz"
         phone-number="01234 78992"
         email-address="manuel@localhost.com"
+        mailing-address="block 111"
       ></friend-contact>
       <friend-contact
         name="Julie Jones"
         phone-number="0987 65431"
         email-address="julie@localhost.com"
+        mail-address="block 222"
       ></friend-contact>
     </ul>
   </section>
@@ -24,16 +26,18 @@ export default {
     return {
       friends: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          // id: "manuel",
+          // name: "Manuel Lorenz",
+          // phone: "0123 45678 90",
+          // email: "manuel@localhost.com",
+          // address: "block 999",
         },
         {
           id: "julie",
           name: "Julie Jones",
           phone: "0987 654421 21",
           email: "julie@localhost.com",
+          address: "block 888",
         },
       ],
     };
