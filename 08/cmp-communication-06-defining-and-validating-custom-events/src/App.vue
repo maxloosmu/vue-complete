@@ -3,6 +3,8 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <new-friend @add-friend="addNewFriend">
+    </new-friend>
     <ul>
       <friend-contact
         v-for="friend in friends"
@@ -47,7 +49,21 @@ export default {
       );
       identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
     },
+    addNewFriend(inputId, inputName) {
+      let newlyCreatedFriend = {
+        id: inputId, 
+        name: inputName,
+        phone: '0',
+        email: 'nil'
+      };
+      this.friends.push(newlyCreatedFriend);
+    },
   },
+  updated() {
+    // https://michaelnthiessen.com/force-re-render/
+    // this.$forceUpdate();
+    console.log(this.friends);
+  }
 };
 </script>
 
