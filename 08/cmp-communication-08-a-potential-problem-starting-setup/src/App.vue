@@ -5,7 +5,7 @@
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
     <!-- mystery of why topics should not be topics2??? -->
-    <knowledge-base :topics="topics0" @select-topic3="activateTopic"></knowledge-base>
+    <knowledge-base :topics2="topics0" @select-topic3="activateTopic"></knowledge-base>
   </div>
 </template>
 
