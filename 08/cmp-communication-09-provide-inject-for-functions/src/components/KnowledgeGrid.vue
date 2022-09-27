@@ -1,7 +1,7 @@
 <template>
   <ul>
     <knowledge-element
-      v-for="topic in topics"
+      v-for="topic in topics9"
       :key="topic.id"
       :id="topic.id"
       :topic-name="topic.title"
@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  inject: ['topics'],
+  inject: ['topics9'],
 };
 </script>

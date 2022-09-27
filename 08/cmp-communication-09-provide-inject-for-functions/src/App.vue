@@ -34,7 +34,7 @@ export default {
   },
   provide() {
     return { 
-      topics: this.topics,
+      topics9: this.topics,
       selectTopic: this.activateTopic
     };
   },
