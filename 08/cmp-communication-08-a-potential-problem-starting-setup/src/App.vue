@@ -4,7 +4,8 @@
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
-    <knowledge-base :topics="topics" @select-topic="activateTopic"></knowledge-base>
+    <!-- mystery of why topics should not be topics2??? -->
+    <knowledge-base :topics="topics0" @select-topic3="activateTopic"></knowledge-base>
   </div>
 </template>
 
@@ -12,7 +13,7 @@
 export default {
   data() {
     return {
-      topics: [
+      topics0: [
         {
           id: 'basics',
           title: 'The Basics',
@@ -34,7 +35,7 @@ export default {
   },
   methods: {
     activateTopic(topicId) {
-      this.activeTopic = this.topics.find((topic) => topic.id === topicId);
+      this.activeTopic = this.topics0.find((topic) => topic.id === topicId);
     },
   },
 };
