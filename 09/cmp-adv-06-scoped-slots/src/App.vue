@@ -10,7 +10,8 @@
     ></user-info>
     <course-goals #default="slotProps">
       <h2>{{ slotProps.item }}</h2>
-      <p>{{ slotProps['another-prop'] }}</p>
+      <h3>{{ slotProps.value }}</h3>
+      <p v-if="!slotProps.value">{{ slotProps.anotherProp }}</p>
     </course-goals>
   </div>
 </template>
