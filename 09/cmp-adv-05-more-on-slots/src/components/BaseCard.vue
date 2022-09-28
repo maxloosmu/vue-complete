@@ -2,10 +2,15 @@
   <div>
     <header v-if="$slots.header">
       <slot name="header">
+        <p>With header v-if="$slots.header"</p>
         <!-- <h2>The Default</h2> -->
       </slot>
     </header>
-    <slot></slot>
+    <slot name="header">
+      <p>Without header v-if="$slots.header"</p>
+      <h2>The Default</h2>
+    </slot>
+    <slot name="default"></slot>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <section>
     <base-card>
+    <!-- within base card interface component, add template for v-slots -->
       <template #header>
         <h3>{{ fullName }}</h3>
         <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>

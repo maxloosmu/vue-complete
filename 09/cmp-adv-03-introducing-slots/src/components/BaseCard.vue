@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- slot is where the rest of the content in the <base-card> parent is placed to apply div CSS  -->
     <slot></slot>
   </div>
 </template>
