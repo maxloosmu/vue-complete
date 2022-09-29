@@ -18,6 +18,7 @@ change:
 npm i --package-lock-only --force
 npm audit fix --force
 npm install eslint-plugin-vue -u
+npm install vuex@next --save
 
 
 
