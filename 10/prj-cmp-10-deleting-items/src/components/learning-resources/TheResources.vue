@@ -71,6 +71,11 @@ export default {
     removeResource(resId) {
       const resIndex = this.storedResources.findIndex(res => res.id === resId);
       this.storedResources.splice(resIndex, 1);
+      // This code below doesn't work because this.storedResources cannot be replaced.  It can only be changed.
+      // this.storedResources = this.storedResources.filter(
+      //   (res) => res.id !== resId
+      // );
+      // console.log(this.storedResources);
     },
   },
 };

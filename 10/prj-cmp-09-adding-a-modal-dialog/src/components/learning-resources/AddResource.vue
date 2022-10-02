@@ -5,7 +5,9 @@
       <p>Please check all inputs and make sure you enter at least a few characters into each input field.</p>
     </template>
     <template #actions>
-      <base-button @click="confirmError">Okay</base-button>
+      <!-- base-button responds to click events, while base-dialog responds to close events. -->
+      <!-- without base-button here, base-dialog's base-button will be defaultly activated. -->
+      <!-- <base-button @click="confirmError">Okay</base-button> -->
     </template>
   </base-dialog>
   <base-card>
