@@ -7,6 +7,7 @@
     <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resource</base-button>
   </base-card>
   <!-- keep alive fails for added link after page reload, so use https://stackoverflow.com/questions/43027499/vuex-state-on-page-refresh -->
+  <!-- Vuex also failed. -->
   <keep-alive>
     <component :is="selectedTab"></component>
   </keep-alive>
