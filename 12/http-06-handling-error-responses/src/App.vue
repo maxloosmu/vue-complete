@@ -1,6 +1,8 @@
 <template>
-  <learning-survey></learning-survey>
-  <user-experiences></user-experiences>
+  <div>
+    <learning-survey></learning-survey>
+    <user-experiences></user-experiences>
+  </div>
 </template>
 
 <script>
@@ -12,21 +14,20 @@ export default {
     LearningSurvey,
     UserExperiences,
   },
+  provide() {
+    return {
+      newEntry: {},
+      // results: [],
+      // isLoading: false,
+      // error: null,
+    };
+  },
   // data() {
   //   return {
   //     savedSurveyResults: [],
   //   };
   // },
   // methods: {
-  //   storeSurvey(surveyData) {
-  //     const surveyResult = {
-  //       name: surveyData.userName,
-  //       rating: surveyData.rating,
-  //       id: new Date().toISOString(),
-  //     };
-  //     this.savedSurveyResults.push(surveyResult);
-  //     console.log(surveyResult);
-  //   },
   // },
 };
 </script>
