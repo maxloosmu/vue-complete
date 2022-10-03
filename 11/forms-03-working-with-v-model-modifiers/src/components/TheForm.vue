@@ -2,11 +2,14 @@
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model="userName" />
+      <!-- https://vuejs.org/guide/essentials/forms.html -->
+      <input id="user-name" name="user-name" type="text" v-model.trim="userName" />
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" v-model="userAge" ref="ageInput" />
+      <!-- Modifiers can be used with v-model: .number, .lazy, .trim -->
+      <!-- For some reason, .number does not work -->
+      <input id="age" name="age" type="number" v-model.number="userAge" ref="ageInput" />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
@@ -67,6 +70,8 @@ export default {
       console.log('User age:');
       console.log(this.userAge + 5);
       console.log(this.$refs.ageInput.value + 5);
+      console.log(parseInt(this.$refs.ageInput.value) + 5);
+      console.log(Number(this.$refs.ageInput.value) + 5);
       console.log(31);
       this.userAge = null;
     },
