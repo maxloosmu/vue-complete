@@ -1,4 +1,5 @@
 <template>
+  <!-- v-bind:type and v-bind:class because "type" and "mode" are programmatically acquired from parent, not hardcoded. -->
   <button :type="type" :class="mode">
     <slot></slot>
   </button>

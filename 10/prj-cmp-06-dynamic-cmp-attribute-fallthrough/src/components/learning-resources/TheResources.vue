@@ -6,6 +6,7 @@
     >Stored Resources</base-button>
     <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resource</base-button>
   </base-card>
+  <!-- provide and inject are used because this component is programmatically selected, so props cannot be hardcoded -->
   <component :is="selectedTab"></component>
 </template>
 
