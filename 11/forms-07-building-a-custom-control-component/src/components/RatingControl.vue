@@ -22,6 +22,7 @@ export default {
   methods: {
     activate(option) {
       this.activeOption = option;
+      console.log(this.activeOption);
     },
   },
 };

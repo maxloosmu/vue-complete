@@ -2,6 +2,7 @@
   <form @submit.prevent="submitForm">
     <div class="form-control" :class="{invalid: userNameValidity === 'invalid'}">
       <label for="user-name">Your Name</label>
+      <!-- Blur event triggered when the focus leaves the input field. -->
       <input id="user-name" name="user-name" type="text" v-model.trim="userName" @blur="validateInput" />
       <p v-if="userNameValidity === 'invalid'">Please enter a valid name!</p>
     </div>
@@ -60,6 +61,7 @@
       </div>
     </div>
     <div class="form-control">
+      <!-- For single checkbox, no need value, so id just takes after name. -->
       <input type="checkbox" id="confirm-terms" name="confirm-terms" v-model="confirm" />
       <label for="confirm-terms">Agree to terms of use?</label>
     </div>

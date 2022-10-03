@@ -60,6 +60,7 @@
       </div>
     </div>
     <div class="form-control">
+      <!-- This custom component has :model-value="" and @update:modelValue="" built-in  -->
       <rating-control v-model="rating"></rating-control>
     </div>
     <div class="form-control">
@@ -113,6 +114,7 @@ export default {
       this.confirm = false;
       console.log('Rating');
       console.log(this.rating);
+      // Able to reset this.rating.
       this.rating = null;
     },
     validateInput() {

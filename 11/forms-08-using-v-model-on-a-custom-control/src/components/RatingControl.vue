@@ -1,5 +1,6 @@
 <template>
   <ul>
+    <!-- modelValue is directly updated from rating instead of going through activeOption.  activeOption is not updated by rating in TheForm.vue. -->
     <li :class="{active: modelValue === 'poor'}">
       <button type="button" @click="activate('poor')">Poor</button>
     </li>
@@ -28,6 +29,7 @@ export default {
   // },
   methods: {
     activate(option) {
+      // this.activeOption = option;
       this.$emit('update:modelValue', option);
     },
   },
