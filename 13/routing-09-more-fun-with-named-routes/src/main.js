@@ -16,12 +16,14 @@ const router = createRouter({
       path: '/teams',
       component: TeamsList,
       children: [
-        { name: 'team-members', path: ':teamId', component: TeamMembers, props: true } // /teams/t1
+        { name: 'team-members', path: ':teamId', component: TeamMembers, props: true }, // /teams/t1
+        { path: '/:notFound(.*)', component: NotFound } // This doesn't work.
       ]
     }, // our-domain.com/teams => TeamsList
     { path: '/users', component: UsersList },
 
-    { path: '/:notFound(.*)', component: NotFound }
+    { path: '/:notFound(.*)', component: NotFound },
+    { path: '/teams/:notFound(.*)', component: NotFound } // This doesn't work.
   ],
   linkActiveClass: 'active'
 });
