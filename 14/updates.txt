@@ -1,0 +1,6 @@
+animations-07-building-javascript-transitions:
+I tried to do quick toggles of toggleParagraph, but the animation failed to respond correctly.  @after-leave no longer shows up in console.log.  
+
+
+
+
