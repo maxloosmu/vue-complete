@@ -1,5 +1,5 @@
 <template>
-  <h3>{{ counter }}</h3>
+  <h3>this.$store.getters.finalCounter: {{ counter }}</h3>
 </template>
 
 <script>

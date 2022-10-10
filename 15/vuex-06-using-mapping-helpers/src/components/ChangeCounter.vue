@@ -11,6 +11,7 @@ export default {
     // addOne() {
     //   this.$store.dispatch('increment');
     // }
+    // The spread operator ... merges the output of mapActions into the methods object.
     // ...mapActions(['increment', 'increase'])
     ...mapActions({
       inc: 'increment',

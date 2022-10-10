@@ -1,5 +1,5 @@
 <template>
-  <h3>{{ finalCounter }}</h3>
+  <h3>{{ finalCnt }}</h3>
 </template>
 
 <script>
@@ -10,7 +10,11 @@ export default {
     // counter() {
     //   return this.$store.getters.finalCounter;
     // },
-    ...mapGetters(['finalCounter'])
+    // mapGetters automatically creates all the computed properties listed in the array below, with the help of the spread ... operator, and merges them to the computed properties object.
+    // ...mapGetters(['finalCounter'])
+    ...mapGetters({
+      finalCnt: 'finalCounter',
+    })
   },
 };
 </script>

@@ -7,6 +7,7 @@
 export default {
   computed: {
     counter() {
+      // Here, numbers is the namespace.
       return this.$store.getters['numbers/normalizedCounter'];
     },
   },

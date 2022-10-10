@@ -5,6 +5,7 @@ import App from './App.vue';
 
 const counterModule = {
   namespaced: true,
+  // When modules are created to organise the store, mutations, actions, getters objects remain global, but the state in the module becomes local.
   state() {
     return {
       counter: 0
@@ -32,6 +33,9 @@ const counterModule = {
     login() {}
   },
   getters: {
+    // Because the state is local to the module, variables in states in other modules cannot be accessed, such as state.isLoggedIn.
+    // But it is possible to use:
+    // testAuth(state, getters, rootState, rootGetters)
     testAuth(state) {
       return state.isLoggedIn;
     },

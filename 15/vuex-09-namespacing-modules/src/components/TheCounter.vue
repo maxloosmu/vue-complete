@@ -10,6 +10,7 @@ export default {
     // counter() {
     //   return this.$store.getters.finalCounter;
     // },
+    // Here, numbers is namespace.
     ...mapGetters('numbers', ['finalCounter'])
   },
 };

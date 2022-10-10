@@ -26,7 +26,8 @@ export default {
         {
           id: 'p2',
           image:
-            'https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Tent_at_High_Shelf_Camp_cropped.jpg/640px-Tent_at_High_Shelf_Camp_cropped.jpg',
+            // 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Tent_at_High_Shelf_Camp_cropped.jpg/640px-Tent_at_High_Shelf_Camp_cropped.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Camping_with_dog_alone_under_the_sky_in_the_tent_%283%29_26.jpg/320px-Camping_with_dog_alone_under_the_sky_in_the_tent_%283%29_26.jpg',
           title: 'Mountain Tent',
           description: 'A tent for the ambitious outdoor tourist.',
           price: 129.99,
