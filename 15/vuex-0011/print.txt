@@ -1,0 +1,586 @@
+print - vuex-0011 code
+main.js
+import { createApp } from 'vue';
+
+import router from './router.js';
+import App from './App.vue';
+import BaseBadge from './components/ui/BaseBadge.vue';
+
+const app = createApp(App)
+
+app.use(router);
+
+app.component('base-badge', BaseBadge);
+
+app.mount('#app');
+---------------------------------------
+---------------------------------------
+router.js
+import { createRouter, createWebHistory } from 'vue-router';
+
+import ProductsList from './pages/ProductsList.vue';
+import UserCart from './pages/UserCart.vue';
+import ShopAdmin from './pages/ShopAdmin.vue';
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: '/', redirect: '/products' },
+    { path: '/products', component: ProductsList },
+    { path: '/cart', component: UserCart },
+    { path: '/admin', component: ShopAdmin },
+  ]
+});
+
+export default router;
+---------------------------------------
+---------------------------------------
+App.vue
+<template>
+  <the-header></the-header>
+  <router-view></router-view>
+</template>
+
+<script>
+import TheHeader from './components/nav/TheHeader.vue';
+
+export default {
+  components: {
+    TheHeader
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+      // Pictures can be found from https://commons.wikimedia.org/wiki/Category:Tents.
+      products: [
+        {
+          id: 'p1',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Books_HD_%288314929977%29.jpg/640px-Books_HD_%288314929977%29.jpg',
+          title: 'Book Collection',
+          description:
+            'A collection of must-read books. All-time classics included!',
+          price: 99.99,
+        },
+        {
+          id: 'p2',
+          image:
+            // 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Tent_at_High_Shelf_Camp_cropped.jpg/640px-Tent_at_High_Shelf_Camp_cropped.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Camping_with_dog_alone_under_the_sky_in_the_tent_%283%29_26.jpg/320px-Camping_with_dog_alone_under_the_sky_in_the_tent_%283%29_26.jpg',
+          title: 'Mountain Tent',
+          description: 'A tent for the ambitious outdoor tourist.',
+          price: 129.99,
+        },
+        {
+          id: 'p3',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/640px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
+          title: 'Food Box',
+          description:
+            'May be partially expired when it arrives but at least it is cheap!',
+          price: 6.99,
+        },
+      ],
+      cart: { items: [], total: 0, qty: 0 },
+    };
+  },
+  provide() {
+    return {
+      isLoggedIn: this.isLoggedIn,
+      products: this.products,
+      cart: this.cart,
+      addProductToCart: this.addProductToCart,
+      removeProductFromCart: this.removeProductFromCart,
+      login: this.login,
+      logout: this.logout,
+    };
+  },
+  methods: {
+    addProductToCart(productData) {
+      const productInCartIndex = this.cart.items.findIndex(
+        (ci) => ci.productId === productData.id
+      );
+
+      if (productInCartIndex >= 0) {
+        this.cart.items[productInCartIndex].qty++;
+      } else {
+        const newItem = {
+          productId: productData.id,
+          title: productData.title,
+          image: productData.image,
+          price: productData.price,
+          qty: 1,
+        };
+        this.cart.items.push(newItem);
+      }
+      this.cart.qty++;
+      this.cart.total += productData.price;
+    },
+
+    removeProductFromCart(prodId) {
+      const productInCartIndex = this.cart.items.findIndex(
+        (cartItem) => cartItem.productId === prodId
+      );
+      const prodData = this.cart.items[productInCartIndex];
+      this.cart.items.splice(productInCartIndex, 1);
+      this.cart.qty -= prodData.qty;
+      this.cart.total -= prodData.price * prodData.qty;
+    },
+    login() {
+      this.isLoggedIn = true;
+    },
+    logout() {
+      this.isLoggedIn = false;
+    },
+  },
+};
+</script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
+---------------------------------------
+---------------------------------------
+pages
+ProductsList.vue
+<template>
+  <section>
+    <ul>
+      <product-item
+        v-for="prod in products"
+        :key="prod.id"
+        :id="prod.id"
+        :title="prod.title"
+        :image="prod.image"
+        :description="prod.description"
+        :price="prod.price"
+      ></product-item>
+    </ul>
+  </section>
+</template>
+
+<script>
+import ProductItem from '../components/products/ProductItem.vue';
+
+export default {
+  inject: ['products'],
+  components: {
+    ProductItem,
+  },
+};
+</script>
+
+<style scoped>
+  ul {
+    list-style: none;
+    margin: 2rem auto;
+    padding: 0;
+    max-width: 40rem;
+  }
+</style>
+---------------------------------------
+---------------------------------------
+pages
+ShopAdmin.vue
+<template>
+  <section>
+    <h2>Shop Admin</h2>
+    <p>There isn't much to do at the moment - sorry ...</p>
+  </section>
+</template>
+
+<style scoped>
+section {
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 40rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 2rem;
+}
+</style>
+---------------------------------------
+---------------------------------------
+pages
+UserCart.vue
+<template>
+  <section>
+    <h2>Your Cart</h2>
+    <h3>Total Amount: <base-badge mode="elegant">${{ cartTotal }}</base-badge></h3>
+    <ul>
+      <cart-item
+        v-for="item in cart.items"
+        :key="item.productId"
+        :prod-id="item.productId"
+        :title="item.title"
+        :image="item.image"
+        :price="item.price"
+        :qty="item.qty"
+      ></cart-item>
+    </ul>
+  </section>
+</template>
+
+<script>
+import CartItem from '../components/cart/CartItem.vue';
+
+export default {
+  inject: ['cart'],
+  components: {
+    CartItem,
+  },
+  computed: {
+    cartTotal() {
+      return this.cart.total.toFixed(2);
+    }
+  }
+};
+</script>
+
+<style scoped>
+section {
+  margin: 2rem auto;
+  max-width: 40rem;
+}
+
+h2 {
+  color: #292929;
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 1rem;
+}
+
+h3 {
+ text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+</style>
+---------------------------------------
+---------------------------------------
+ui
+BaseBadge.vue
+<template>
+  <span class="badge" :class="['badge--' + mode, {nml: noMarginLeft}]">
+    <slot></slot>
+  </span>
+</template>
+
+<script>
+export default {
+  props: ['mode', 'noMarginLeft']
+}
+</script>
+
+<style scoped>
+.badge {
+  display: inline-block;
+  padding: 0.15rem 1.25rem;
+  background-color: #ccc;
+  color: #292929;
+  margin: 0 0.75rem;
+  border-radius: 30px;
+}
+
+.nml {
+  margin-left: 0;
+}
+
+.badge--highlight {
+  background-color: #f0b800;
+  color: black;
+}
+
+.badge--elegant {
+  background-color: #45006d;
+  color: white;
+}
+</style>
+---------------------------------------
+---------------------------------------
+nav
+TheHeader.vue
+<template>
+  <header>
+    <h1>
+      <router-link to="/">VueShop</router-link>
+    </h1>
+    <nav>
+      <ul>
+        <li>
+          <router-link to="/products">Products</router-link>
+        </li>
+        <li>
+          <router-link to="/cart">Cart</router-link>
+          <base-badge mode="elegant">{{ cart.qty }}</base-badge>
+        </li>
+        <li v-if="isLoggedIn">
+          <router-link to="/admin">Admin</router-link>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <button v-if="!isLoggedIn" @click="login">Login</button>
+      <button v-if="isLoggedIn" @click="logout">Logout</button>
+    </div>
+  </header>
+</template>
+
+<script>
+export default {
+  inject: ['isLoggedIn', 'login', 'logout', 'cart'],
+};
+</script>
+
+<style scoped>
+header {
+  height: 5rem;
+  background-color: white;
+  margin: 0 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+li {
+  margin: 0 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.25rem;
+}
+
+a:hover,
+a:active,
+a.router-link-active {
+  color: #45006d;
+  border-color: #45006d;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #45006d;
+  background-color: transparent;
+  color: #45006d;
+  border-radius: 30px;
+}
+
+button:hover,
+button:active {
+  background-color: #f0d5ff;
+}
+</style>
+---------------------------------------
+---------------------------------------
+cart
+CartItem.vue
+<template>
+  <li>
+    <div>
+      <img :src="image" :alt="title" />
+    </div>
+    <div>
+      <h3>{{ title }}</h3>
+      <div class="item__data">
+        <div>
+          Price per Item:
+          <strong>${{ price }}</strong>
+        </div>
+        <div>
+          Quantity:
+          <strong>{{ qty }}</strong>
+        </div>
+      </div>
+      <div class="item__total">Total: ${{ itemTotal }}</div>
+      <button @click="remove">Remove</button>
+    </div>
+  </li>
+</template>
+
+<script>
+export default {
+  inject: ['removeProductFromCart'],
+  props: ['prodId', 'title', 'image', 'price', 'qty'],
+  computed: {
+    itemTotal() {
+      return (this.price * this.qty).toFixed(2);
+    }
+  },
+  methods: {
+    remove() {
+      this.removeProductFromCart(this.prodId);
+    }
+  }
+};
+</script>
+
+<style scoped>
+li {
+  margin: 1rem auto;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  text-align: center;
+  max-width: 25rem;
+}
+
+img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.item__data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item__total {
+  font-weight: bold;
+  margin: 1rem 0;
+  border-top: 1px solid #474747;
+  border-bottom: 2px solid #474747;
+  padding: 0.25rem 0;
+  width: auto;
+}
+
+button {
+  font: inherit;
+  border: 1px solid #8f0030;
+  background-color: #8f0030;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+}
+
+button:hover,
+button:active {
+  background-color: #53001c;
+  border-color: #53001c;
+}
+</style>
+---------------------------------------
+---------------------------------------
+products
+ProductItem.vue
+<template>
+  <li class="product">
+    <div class="product__data">
+      <div class="product__image">
+        <img :src="image" :alt="title" />
+      </div>
+      <div class="product__text">
+        <h3>{{ title }}</h3>
+        <base-badge mode="highlight" :no-margin-left="true">
+          <h4>${{ price }}</h4>
+        </base-badge>
+        <p>{{ description }}</p>
+      </div>
+    </div>
+    <div class="product__actions">
+      <button @click="addToCart">Add to Cart</button>
+    </div>
+  </li>
+</template>
+
+<script>
+export default {
+  inject: ['addProductToCart'],
+  props: ['id', 'image', 'title', 'price', 'description'],
+  methods: {
+    addToCart() {
+      this.addProductToCart({
+        id: this.id,
+        image: this.image,
+        title: this.title,
+        price: this.price,
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+li {
+  margin: 1.5rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 1rem;
+}
+
+.product__data {
+  display: flex;
+}
+
+.product__image {
+  margin-right: 1rem;
+}
+
+.product__image img {
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+}
+
+.product__text h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.product__text h4 {
+  margin: 0;
+}
+
+.product__actions {
+  text-align: center;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background-color: #45006d;
+  color: white;
+  border: 1px solid #45006d;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+}
+
+button:hover,
+button:active {
+  background-color: #760ab4;
+  border-color: #760ab4;
+}
+</style>
+---------------------------------------
+---------------------------------------
+
+---------------------------------------
+---------------------------------------
