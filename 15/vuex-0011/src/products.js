@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      products: [
+      allProducts: [
         {
           id: 'p1',
           image:
@@ -34,7 +34,7 @@ export default {
   },
   getters: {
     products(state) {
-      return state.products;
+      return state.allProducts;
     }
   }
 };
