@@ -1,0 +1,137 @@
+Uncaught Error: [vuex] getters should be function but "getters.products" in module "prods" is []
+
+I've reduced this code to the bare minimal, but I'm still not sure where this problem is coming from, but this is the first sentence of the error:
+
+    Uncaught Error: [vuex] getters should be function but "getters.products" in module "prods" is []
+
+This is my main.js:
+
+    import { createApp } from 'vue';
+    import router from './router.js';
+    import storage from './store.js';
+    import App from './App.vue';
+    const app = createApp(App);
+    app.use(router);
+    app.use(storage);
+    app.mount('#app');
+
+This is my router.js:
+
+    import { createRouter, createWebHistory } from 'vue-router';
+    import ProductsList from './ProductsList.vue';
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/', redirect: '/products' },
+        { path: '/products', component: ProductsList },
+      ]
+    });
+    export default router;
+
+This is my store.js:
+
+    import { createStore } from 'vuex';
+    // import productsModule from './products.js';
+    const products = createStore({
+      namespaced: true,
+      state() {
+        return {
+          allProducts: [
+            {
+              id: 'p1',
+              image: "",
+              title: 'Books',
+              description: 'Books collection.',
+              price: 20
+            },
+          ]
+        };
+      },
+      getters: {
+        products(state) {
+          return state.allProducts;
+        }
+      }
+    })
+    const store = createStore({
+      modules: {
+        prods: products,
+      },
+    });
+    export default store;
+
+This is my App.vue minus the style:
+
+    <template>
+      <the-header></the-header>
+      <router-view></router-view>
+    </template>
+    <script>
+    import TheHeader from './TheHeader.vue';
+    export default {
+      components: {
+        TheHeader
+      },
+    }
+    </script>
+
+This is my ProductsList.vue minus the style:
+
+    <template>
+      <section>
+        <ul>
+          <product-item
+            v-for="prod in products"
+            :key="prod.id"
+            :id="prod.id"
+            :title="prod.title"
+            :image="prod.image"
+            :description="prod.description"
+            :price="prod.price"
+          ></product-item>
+        </ul>
+      </section>
+    </template>
+    <script>
+    import ProductItem from './ProductItem.vue';
+    export default {
+      // inject: ['products'],
+      components: {
+        ProductItem,
+      },
+      computed: {
+        products() {
+          return this.$store.getters['prods/products'];
+        }
+      }
+    };
+    </script>
+
+And this is my ProductItem.vue minus the style:
+
+    <template>
+      <li class="product">
+        <div class="product__data">
+          <div class="product__image">
+            <img :src="image" :alt="title" />
+          </div>
+          <div class="product__text">
+            <h3>{{ title }}</h3>
+            <h4>${{ price }}</h4>
+            <p>{{ description }}</p>
+          </div>
+        </div>
+        <div class="product__actions">
+          <button>Add to Cart</button>
+        </div>
+      </li>
+    </template>
+    <script>
+    export default {
+      props: ['id', 'image', 'title', 'price', 'description'],
+    };
+    </script>
+
+
+
+
