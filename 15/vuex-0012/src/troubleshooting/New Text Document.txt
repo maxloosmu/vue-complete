@@ -132,6 +132,8 @@ And this is my ProductItem.vue minus the style:
     };
     </script>
 
+My code including the styles and the workable products.js can be found at:
 
+https://github.com/maxloosmu/vue-complete/tree/main/15/vuex-0012/src
 
-
+Could someone help point me to why this way of using Vuex getters is wrong?  Or is it due to another problem with Vuex?  

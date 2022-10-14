@@ -28,9 +28,9 @@ export default {
         id: this.id,
       // this.addProductToCart({
       //   id: this.id,
-      //   image: this.image,
-      //   title: this.title,
-      //   price: this.price,
+        image: this.image,
+        title: this.title,
+        price: this.price,
       });
     },
   },
