@@ -33,6 +33,7 @@
     </div>
     <base-button>Register</base-button>
   </form>
+  {{ areas }}
 </template>
 
 <script>
