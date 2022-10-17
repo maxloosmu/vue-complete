@@ -8,7 +8,6 @@ export default {
       hourlyRate: data.rate,
       areas: data.areas
     };
-
     context.commit('registerCoach', oneCoachData);
   }
 };

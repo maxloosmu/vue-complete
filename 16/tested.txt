@@ -1,6 +1,6 @@
 main-prj-08-building-the-coach-detail-component
 main-prj-10-registering-as-a-coach-the-form
-
-
+main-prj-11-adding-coaches-to-vuex
+main-prj-14-outputting-incoming-requests
 
 
