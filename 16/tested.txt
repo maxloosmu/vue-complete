@@ -14,3 +14,11 @@ main-prj-21-finished
 
 
 
+
+
+
+
+https://masteringjs.io/tutorials/vue/router-view#/
+https://stackoverflow.com/questions/71043243/what-is-routerview-in-vue-js
+
+
