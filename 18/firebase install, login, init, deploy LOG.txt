@@ -1,0 +1,139 @@
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components# curl -sL https://firebase.tools | bash
+-- Checking for existing firebase-tools on PATH...
+-- Checking your machine type...
+-- Downloading binary from https://firebase.tools/bin/linux/latest
+######################################################################## 100.0%#=#=#                                    ##=#=-#                                                     ##=O#- #                                                    #-#O=#  #                                                    #=#=-#   #                                                  -#O#-  #   #                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       #                                                           #                                                           ##                                                          ##                                                          ##                                                          ###                                                         ###                                                         ####                                                        ####                                                        #####                                                       ######                                                      ######                                                      #######                                                     #######                                                     ########                                                    #########                                                   ##########                                                  ##########                                                  ###########                                                 ############                                                ############                                                #############                                               ##############                                              ##############                                              ###############                                             ################                                            #################                                           #################                                           ##################                                          ##################                                          ###################                                         ####################                                        #####################                                       #####################                                       ######################                                      #######################                                     #######################                                     ########################                                    #########################                                   ##########################                                  ##########################                                  ###########################                                 ############################                                #############################                               #############################                               ##############################                              ###############################                             ################################                            ################################                            #################################                           ##################################                          ###################################                         ####################################                        ####################################                        #####################################                       #####################################                       ######################################                      ######################################                      #######################################                     ########################################                    #########################################                   #########################################                   ##########################################                  ###########################################                 ###########################################                 ############################################                #############################################               #############################################               ##############################################              ##############################################              ###############################################             ################################################            #################################################           #################################################           ##################################################          ###################################################         ###################################################         ####################################################        #####################################################       #####################################################       ######################################################      ######################################################      #######################################################     ########################################################    ########################################################    #########################################################   ##########################################################  ##########################################################  ########################################################### ######################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################## 100.0%
+-- Setting permissions on binary...
+-- Checking your PATH variable...
+-- firebase-tools@11.15.0 is now installed
+-- All Done!
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components# firebase login
+i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+
+? Allow Firebase to collect CLI and Emulator Suite usage and
+ error reporting information? Yes
+i  To change your data collection preference at any time, run `firebase logout` and log in again.
+
+Visit this URL on this device to log in:
+https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=755080148&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+
+Waiting for authentication...
+
+✔  Success! Logged in as maxloopww@gmail.com
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components# firebase init
+
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /root/src/vue-complete/18/deploy-02-async-components
+
+? Which Firebase features do you want to set up for this dir
+ectory? Press Space to select features, then Enter to confir
+m your choices.
+
+Error: Must select at least one feature. Use SPACEBAR to select features, or specify a feature by running firebase init [feature_name]
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components# firebase init
+
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /root/src/vue-complete/18/deploy-02-async-components
+
+? Which Firebase features do you want to set up for this dir
+ectory? Press Space to select features, then Enter to confir
+m your choices. Hosting: Configure files for Firebase Hostin
+g and (optionally) set up GitHub Action deploys
+
+=== Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add,
+but for now we'll just set up a default project.
+
+? Please select an option: Use an existing project
+? Select a default Firebase project for this directory: max-
+vue-01 (max-vue-01)
+i  Using project max-vue-01 (max-vue-01)
+
+=== Hosting Setup
+
+Your public directory is the folder (relative to your project directory) that
+will contain Hosting assets to be uploaded with firebase deploy. If you
+have a build process for your assets, use your build's output directory.
+
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index
+.html)? Yes
+? Set up automatic builds and deploys with GitHub? Yes
+? File dist/index.html already exists. Overwrite? No
+i  Skipping write of dist/index.html
+
+i  Detected a .git folder at /root/src/vue-complete
+i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store.
+
+Visit this URL on this device to log in:
+https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=769452480&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+
+Waiting for authentication...
+
+✔  Success! Logged into GitHub as maxloosmu
+
+? For which GitHub repository would you like to set up a Git
+Hub workflow? (format: user/repository) maxloosmu/vue-comple
+te
+
+✔  Created service account github-action-535275723 with Firebase Hosting admin permissions.
+✔  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_MAX_VUE_01.
+i  You can manage your secrets at https://github.com/maxloosmu/vue-complete/settings/secrets.
+
+? Set up the workflow to run a build script before every dep
+loy? No
+
+✔  Created workflow file /root/src/vue-complete/.github/workflows/firebase-hosting-pull-request.yml
+? Set up automatic deployment to your site's live channel wh
+en a PR is merged? Yes
+? What is the name of the GitHub branch associated with your
+ site's live channel? main
+
+✔  Created workflow file /root/src/vue-complete/.github/workflows/firebase-hosting-merge.yml
+
+i  Action required: Visit this URL to revoke authorization for the Firebase CLI GitHub OAuth App:
+https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+i  Action required: Push any new workflow file(s) to your repo
+
+i  Writing configuration info to firebase.json...
+i  Writing project information to .firebaserc...
+
+✔  Firebase initialization complete!
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components# firebase deploy
+
+=== Deploying to 'max-vue-01'...
+
+i  deploying hosting
+i  hosting[max-vue-01]: beginning deploy...
+i  hosting[max-vue-01]: found 24 files in dist
+✔  hosting[max-vue-01]: file upload complete
+i  hosting[max-vue-01]: finalizing version...
+✔  hosting[max-vue-01]: version finalized
+i  hosting[max-vue-01]: releasing new version...
+✔  hosting[max-vue-01]: release complete
+
+✔  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/max-vue-01/overview
+Hosting URL: https://max-vue-01.web.app
+root@MAXLEN:~/src/vue-complete/18/deploy-02-async-components#
+
+
+
+

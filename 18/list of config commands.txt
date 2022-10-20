@@ -26,7 +26,7 @@ npm install local-storage --save
 
 
 npm install firebase-tools
-
+https://firebase.google.com/docs/cli/?authuser=0&hl=en#mac-linux-auto-script
 
 
 
