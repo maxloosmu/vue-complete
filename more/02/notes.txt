@@ -1,0 +1,54 @@
+HTML attributes can use v-bind.
+Methods can return values through interpolation, but likely not reactive.  
+Methods are more for events.  
+Can use v-html to display HTML.
+Default event object input element will be parameter for method for events.  
+Event parameter can also be passed in:
+v-on:input="setName($event, 'Max')"
+Form with buttons, button click will send event to server.  Stop sending by using modifiers:
+<form v-on:submit.prevent="submitForm">
+V-on:keyup.enter
+V-once
+The problem with using methods is that all methods will run whenever there's an update on the webpage.  
+Computed properties should be used for dynamically updated values, because they are aware of their dependencies and only updates specific values when changed only.  
+Computed properties are read only.  
+Computed and data properties should have different names.  
+Watchers have same name as either data or computed properties, and triggers when values changed.  
+Watchers do not return values and only runs logic.  
+watchedName(newValue, oldValue) {...}
+Computed properties are simpler than watchers for logic with multiple dependencies.
+Watchers are for logic that changes the variable upon hitting one particular condition, eg. Upon particular HTTP requests, or upon timer.  
+<div
+  class="demo"
+  :style="{borderColor: boxASelected ? 'red' : 'white'}"
+  @click="boxSelected('A')"
+></div>
+<div
+  class="demo"
+  :class="{active: boxASelected}"
+  @click="boxSelected('A')"
+></div>
+<div
+  :class="['demo', {active: boxASelected}]"
+  @click="boxSelected('A')"
+></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
